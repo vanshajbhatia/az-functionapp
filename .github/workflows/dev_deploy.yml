@@ -29,14 +29,17 @@ jobs:
   cancel-duplicate-workflow-runs:
     runs-on: ubuntu-latest
     steps:
-      - uses: potiuk/cancel-workflow-runs@master
-        name: "Cancel duplicate workflow runs"
-        with:
-          cancelMode: duplicates
-          cancelFutureDuplicates: true
-          notifyPRCancel: true
-          token: ${{ github.token }}
-#   test:
+      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+           GITHUB_TOKEN: "${{ github.token }}"
+#       - uses: potiuk/cancel-workflow-runs@master
+#         name: "Cancel duplicate workflow runs"
+#         with:
+#           cancelMode: duplicates
+#           cancelFutureDuplicates: true
+#           notifyPRCancel: true
+#           token: ${{ github.token }}
+# #   test:
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: Cancel Previous Runs
