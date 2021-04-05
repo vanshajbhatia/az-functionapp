@@ -1,9 +1,14 @@
-name: DEV Cornerstone Azure Function App
+name: dev-workflow
 
+# on:
+#   push:
+#     branches:
+#         - main
+# on:
+#   schedule:
+#     - cron: "0 0 * * *"
 on:
-  push:
-    branches:
-        - main
+  workflow_dispatch
 
 env:
   AZURE_FUNCTIONAPP_NAME: test-github-actions # set this to your application's name
