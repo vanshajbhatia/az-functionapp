@@ -27,7 +27,6 @@ env:
 
 jobs:
   cancel-duplicate-workflow-runs:
-    name: "Cancel duplicate workflow runs"
     runs-on: ubuntu-latest
     steps:
       - uses: potiuk/cancel-workflow-runs@master
