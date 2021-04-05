@@ -25,13 +25,23 @@ env:
   PYTHON_VERSION: '3.7'                 # set this to the python version to use (supports 3.6, 3.7, 3.8)
 
 jobs:
-  test:
+  cancel-duplicate-workflow-runs:
+    name: "Cancel duplicate workflow runs"
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
+      - uses: potiuk/cancel-workflow-runs@master
+        name: "Cancel duplicate workflow runs"
         with:
-          access_token: ${{ github.token }}
+          cancelMode: duplicates
+          cancelFutureDuplicates: true
+          notifyPRCancel: true
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Cancel Previous Runs
+#         uses: styfle/cancel-workflow-action@0.8.0
+#         with:
+#           access_token: ${{ github.token }}
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
