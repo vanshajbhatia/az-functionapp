@@ -8,6 +8,8 @@ name: dev-workflow
 #   schedule:
 #     - cron: "0 0 * * *"
 on:
+  release:
+    types: [created]
   push:
     branches:
         - main
