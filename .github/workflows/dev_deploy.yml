@@ -35,6 +35,7 @@ jobs:
           cancelMode: duplicates
           cancelFutureDuplicates: true
           notifyPRCancel: true
+          access_token: ${{ github.token }}
 #   test:
 #     runs-on: ubuntu-latest
 #     steps:
