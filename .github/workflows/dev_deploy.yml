@@ -76,4 +76,4 @@ jobs:
         enable-oryx-build: true
     - name: 'Post Checkout Cleanup'
       run: |
-        rm -rf "${{ github.workspace }}"
+        echo "${{ github.workspace }}"
