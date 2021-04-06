@@ -53,10 +53,10 @@ jobs:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@main
 
-    - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
+#     - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: ${{ env.PYTHON_VERSION }}
 
 #     - name: 'Resolve Project Dependencies Using Pip'
 #       shell: bash
