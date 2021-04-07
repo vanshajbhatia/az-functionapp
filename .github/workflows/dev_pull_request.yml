@@ -1,0 +1,63 @@
+name: dev-workflow
+
+
+# on:
+#   push:
+#     branches:
+#         - main
+# on:
+#   schedule:
+#     - cron: "0 0 * * *"
+on:
+  pull_request:
+    branches:
+        - main
+  workflow_dispatch:
+    branches:
+        - main
+
+env:
+  AZURE_FUNCTIONAPP_NAME: test-github-actions # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'   # set this to the path to your web app project, defaults to the repository root
+  PYTHON_VERSION: '3.7'                 # set this to the python version to use (supports 3.6, 3.7, 3.8)
+
+jobs:
+  cancel-duplicate-workflow-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+           GITHUB_TOKEN: "${{ github.token }}"
+#       - uses: potiuk/cancel-workflow-runs@master
+#         name: "Cancel duplicate workflow runs"
+#         with:
+#           cancelMode: duplicates
+#           cancelFutureDuplicates: true
+#           notifyPRCancel: true
+#           token: ${{ github.token }}
+# #   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Cancel Previous Runs
+#         uses: styfle/cancel-workflow-action@0.8.0
+#         with:
+#           access_token: ${{ github.token }}
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+
+    - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: 'Resolve Project Dependencies Using Pip'
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        popd
+    - name: 'Run Tests with pytest'
+      run: py.test -n 4 -p no:warnings
