@@ -45,8 +45,8 @@ jobs:
   build-and-test:
     runs-on: self-hosted
     steps:
-    - name: 'Checkout GitHub Action'
-      uses: actions/checkout@main
+    - name: 'Checkout GitHub Action. Branch: ${{ github.head_ref }}'
+      uses: actions/checkout@${{ github.head_ref }}
 
     - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
       uses: actions/setup-python@v2
