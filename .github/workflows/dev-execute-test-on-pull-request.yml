@@ -1,4 +1,4 @@
-name: dev-workflow
+name: dev-execute-test-on-pull-request
 
 
 # on:
@@ -42,7 +42,7 @@ jobs:
 #         uses: styfle/cancel-workflow-action@0.8.0
 #         with:
 #           access_token: ${{ github.token }}
-  build-and-deploy:
+  build-and-test:
     runs-on: self-hosted
     steps:
     - name: 'Checkout GitHub Action'
