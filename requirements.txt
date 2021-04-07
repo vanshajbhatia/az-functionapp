@@ -7,3 +7,4 @@ Pillow
 pyarrow
 pytest
 requests
+pytest-xdist==2.2.1
