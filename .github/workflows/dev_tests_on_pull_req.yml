@@ -1,4 +1,4 @@
-name: dev-run-tests-on-pull-req
+name: dev-tests-on-pull-req
 
 
 # on:
