@@ -9,10 +9,8 @@ name: dev-tests
 #   schedule:
 #     - cron: "0 0 * * *"
 on:
-  pull_request:
-    branches:
-        - main
   workflow_dispatch:
+  pull_request:
     branches:
         - main
 
